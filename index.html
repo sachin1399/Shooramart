@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>ShooraMart Home</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <div class="top-header"> <span>support@shooramart.com</span>
+    <!-- inline block ,span so that only that space occupie jo required ho text ko --> <span>+91 12345 67890</span>
+    <!-- ek hi line me show hoga span se--> </div>
+  <header class="main-header">
+    <!-- header ek semantic tag hai ,jo tag content ka meaning describe karte hain.section,articles footer -->
+    <h2 class="logo">ShooraMart</h2> <input type="text" placeholder="Search for products...">
+    <div class="icons"> <span>
+       <a href="/login.html">Login</a> </span> 
+      <span>Wishlist</span>
+       <span>Cart (<span id="cart-count">0</span>)</span> </div>
+  </header>
+  <nav class="navbar"> <a href="index.html">Home</a> <a href="shop.html">Shop</a> <a href="blog.html">Blog</a> <a
+      href="customerservice.html">Customer Service</a> </nav>
+  <section class="hero">
+    <div class="hero-text">
+      <h1>Summer Sale</h1>
+      <h2>New Collections</h2>
+      <p>Up to 65% OFF</p> <button class="shop-more">Shop More</button> <button class="read-more">Read More</button>
+    </div> <img src="img/blue image.webp" alt="Hero">
+  </section>
+  <section class="filter-section">
+    <h2>Filter by Price</h2> <input type="range" id="price-range" min="0" max="4000" value="4000"> <span
+      id="range-value">₹4000</span>
+  </section>
+  <section class="categories">
+    <h2>Shop by Category</h2>
+    <div class="category-box">
+      <div class="category-card"> <img src="https://images.pexels.com/photos/298863/pexels-photo-298863.jpeg" alt="Men">
+        <p>Men</p>
+      </div>
+      <div class="category-card"> <img src="img/women.jpg" alt="Women">
+        <p>Women</p>
+      </div>
+      <div class="category-card"> <img src="img/terric-booties-2047596_1280.jpg" alt="Kids">
+        <p>Kids</p>
+      </div>
+    </div>
+  </section>
+  <section class="products">
+    <h2>Featured Products</h2>
+    <div class="product-grid">
+      <div class="product-card" data-price="1999">
+        <div class="badges"> <span class="badge sale">-30%</span> </div> <img
+          src="https://imagedelivery.net/lyg2LuGO05OELPt1DKJTnw/3441fcb4-6081-4403-25c0-f641e71b8600/public"
+          alt="Stylish Watch">
+        <p class="rating">⭐⭐⭐⭐☆ <span>(4.3)</span></p>
+        <h4 class="product-name">Stylish Watch</h4>
+        <p class="feature">Premium • Lightweight • Durable</p>
+        <p class="price">₹1,999</p>
+        <div class="quantity"> <button class="minus">-</button> <span class="qty">1</span> <button
+            class="plus">+</button> </div> <button class="add-to-cart">Add to Cart</button>
+        <p class="stock limited">🔥 Only 5 left</p>
+      </div>
+      <div class="product-card" data-price="2499">
+        <div class="badges"> <span class="badge hot">HOT</span> </div> <img
+          src="https://static.vecteezy.com/system/resources/previews/044/812/573/non_2x/a-brown-leather-travel-bag-isolated-on-transparent-background-free-png.png"
+          alt="Leather Bag">
+        <p class="rating">⭐⭐⭐⭐⭐ <span>(4.8)</span></p>
+        <h4 class="product-name">Leather Bag</h4>
+        <p class="feature">Durable • Travel • Stylish</p>
+        <p class="price">₹2,499</p>
+        <div class="quantity"> <button class="minus">-</button> <span class="qty">1</span> <button
+            class="plus">+</button> </div> <button class="add-to-cart">Add to Cart</button>
+        <p class="stock in-stock">✔ In Stock</p>
+      </div>
+      <div class="product-card" data-price="3199">
+        <div class="badges"> <span class="badge new">NEW</span> </div> <img
+          src="https://png.pngtree.com/png-clipart/20230417/original/pngtree-green-transparent-sports-shoes-png-image_9062733.png"
+          alt="Running Shoes">
+        <p class="rating">⭐⭐⭐⭐☆ <span>(4.2)</span></p>
+        <h4 class="product-name">Running Shoes</h4>
+        <p class="feature">Comfort Fit • Sports</p>
+        <p class="price">₹3,199</p>
+        <div class="quantity"> <button class="minus">-</button> <span class="qty">1</span> <button
+            class="plus">+</button> </div> <button class="add-to-cart">Add to Cart</button>
+        <p class="stock fast-sell">⚡ Selling Fast</p>
+      </div>
+      <div class="product-card" data-price="1299">
+        <div class="badges"> <span class="badge hot">HOT</span> </div> <img
+          src="https://www.pngall.com/wp-content/uploads/4/Wireless-Headphone-PNG-HD-Quality.png" alt="Headphones">
+        <p class="rating">⭐⭐⭐⭐⭐ <span>(4.8)</span></p>
+        <h4 class="product-name">Headphones</h4>
+        <p class="feature">Noise Cancel • 40h Battery</p>
+        <p class="price">₹1,299</p>
+        <div class="quantity"> <button class="minus">-</button> <span class="qty">1</span> <button
+            class="plus">+</button> </div> <button class="add-to-cart">Add to Cart</button>
+        <p class="stock in-stock">✔ In Stock</p>
+      </div>
+    </div>
+  </section>
+  <div id="toast">Item added to cart!</div>
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-col">
+        <h3>ShooraMart</h3>
+        <p>Your one-stop shop for fashion, accessories & lifestyle products.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="shop.html">Shop</a></li>
+          <li><a href="blog.html">Blog</a></li>
+          <li><a href="customerservice.html">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Customer Care</h4>
+        <ul>
+          <li><a href="/login.html">My Account</a></li>
+          <li><a href="shop.html">Orders</a></li>
+          <li><a href="">Wishlist</a></li>
+          <li><a href="customerservice.html">Help</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Why Shop With Us?</h4>
+        <p>✔ Secure Payments</p>
+        <p>✔ Fast Delivery</p>
+        <p>✔ Easy Returns</p>
+        <p>✔ 24/7 Support</p>
+      </div>
+    </div>
+    <div class="footer-bottom"> © 2026 ShooraMart. All rights reserved. </div>
+  </footer>
+  <script src="cart.js"></script>
+  <script src="script.js"></script>
+</body>
+
+</html>

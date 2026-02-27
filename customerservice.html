@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Customer Service | ShooraMart</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', Arial, sans-serif;
+    }
+
+    body {
+      background: #f9f9f9;
+      color: #111;
+    }
+
+    /* Header */
+    header {
+      background: white;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 40px;
+      flex-wrap: wrap;
+    }
+
+    .logo {
+      color: #0a8f6a;
+      font-size: 28px;
+      font-weight: bold;
+      cursor: pointer;
+      text-decoration: none;
+    }
+
+    header input {
+      width: 40%;
+      padding: 10px 15px;
+      border-radius: 25px;
+      border: 1px solid #ccc;
+      outline: none;
+      transition: 0.3s;
+    }
+
+    header input:focus {
+      border-color: #0a8f6a;
+      box-shadow: 0 0 10px rgba(10, 143, 106, 0.2);
+    }
+
+    /* Navbar */
+    nav.navbar {
+      background: #333;
+      display: flex;
+      justify-content: center;
+      padding: 10px 0;
+    }
+
+    nav.navbar a {
+      color: white;
+      text-decoration: none;
+      margin: 0 15px;
+      font-weight: 500;
+      transition: 0.3s;
+    }
+
+    nav.navbar a:hover {
+      color: #0a8f6a;
+    }
+
+    /* Hero */
+    .hero {
+      position: relative;
+      height: 50vh;
+      background: #0a8f6a;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 20px;
+      color: white;
+      border-radius: 12px;
+      margin: 20px;
+    }
+
+    .hero h1 {
+      font-size: 36px;
+      margin-bottom: 10px;
+    }
+
+    .hero p {
+      font-size: 18px;
+      color: #dfffcf;
+    }
+
+    /* FAQ Cards */
+    .faq-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+      max-width: 1200px;
+      margin: 40px auto 20px auto;
+    }
+
+    .card {
+      background: white;
+      padding: 20px;
+      text-align: center;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      cursor: pointer;
+      transition: 0.3s;
+      font-weight: 500;
+    }
+
+    .card.active {
+      background: #0a8f6a;
+      color: white;
+      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+    }
+
+    /* Accordion */
+    .accordion {
+      max-width: 900px;
+      margin: 20px auto;
+      border-radius: 12px;
+      overflow: hidden;
+    }
+
+    .accordion-item {
+      margin-bottom: 10px;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .accordion-header {
+      padding: 15px 20px;
+      cursor: pointer;
+      background: #0a8f6a;
+      color: white;
+      font-weight: bold;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-radius: 10px;
+      transition: 0.3s;
+    }
+
+    .accordion-header.active {
+      background: #066b4a;
+    }
+
+    .accordion-content {
+      display: none;
+      padding: 15px 25px;
+      font-size: 15px;
+      color: #333;
+      background: #fefefe;
+      line-height: 1.6;
+    }
+
+    .accordion-content ul {
+      margin-top: 10px;
+      margin-left: 20px;
+    }
+
+    .accordion-content ul li {
+      margin-bottom: 8px;
+    }
+
+    /* Contact */
+    .contact {
+      text-align: center;
+      margin: 40px auto;
+    }
+
+    .contact h2 {
+      font-size: 28px;
+      margin-bottom: 20px;
+      color: #0a8f6a;
+    }
+
+    .contact button {
+      padding: 12px 25px;
+      margin: 10px;
+      background: #0a8f6a;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: 0.3s;
+      font-weight: 500;
+    }
+
+    .contact button:hover {
+      background: #066b4a;
+    }
+
+    /* Chat Popup */
+    .chat-popup {
+      display: none;
+      position: fixed;
+      bottom: 80px;
+      right: 30px;
+      border: 1px solid #0a8f6a;
+      z-index: 999;
+      background: white;
+      border-radius: 10px;
+      width: 300px;
+      max-width: 90%;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    }
+
+    .chat-header {
+      background: #0a8f6a;
+      color: white;
+      padding: 10px;
+      border-radius: 10px 10px 0 0;
+      font-weight: bold;
+      text-align: center;
+    }
+
+    .chat-body {
+      padding: 10px;
+      max-height: 200px;
+      overflow-y: auto;
+      font-size: 14px;
+      color: #333;
+    }
+
+    .chat-input {
+      display: flex;
+      border-top: 1px solid #eee;
+    }
+
+    .chat-input input {
+      flex: 1;
+      padding: 8px;
+      border: none;
+      outline: none;
+      border-radius: 0 0 0 10px;
+    }
+
+    .chat-input button {
+      padding: 8px 12px;
+      border: none;
+      background: #0a8f6a;
+      color: white;
+      cursor: pointer;
+      border-radius: 0 0 10px 0;
+    }
+
+    /* Footer */
+    footer {
+      background: #111;
+      color: #ddd;
+      text-align: center;
+      padding: 20px;
+      font-size: 14px;
+      margin-top: 40px;
+    }
+
+    @media(max-width:768px) {
+      header input {
+        width: 100%;
+        margin-top: 10px;
+      }
+
+      .faq-cards {
+        grid-template-columns: 1fr;
+      }
+
+      .hero {
+        height: 35vh;
+        font-size: 16px;
+        padding: 15px;
+      }
+
+      nav.navbar {
+        flex-direction: column;
+      }
+
+      nav.navbar a {
+        margin: 8px 0;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Header -->
+  <header>
+    <a href="index.html" class="logo">ShooraMart</a>
+    <input type="search" id="faqSearch" placeholder="Search help topics...">
+  </header>
+
+  <!-- Navbar -->
+  <nav class="navbar">
+    <a href="index.html">Home</a>
+    <a href="shop.html">Shop</a>
+    <a href="blog.html">Blog</a>
+    <a href="customerservice.html">Customer Service</a>
+  </nav>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div>
+      <h1>How can we help you?</h1>
+      <p>Find answers or contact our support easily.</p>
+    </div>
+  </section>
+
+  <!-- FAQ Cards -->
+  <section class="faq-cards">
+    <div class="card" data-topic="Orders">Orders</div>
+    <div class="card" data-topic="Returns">Returns & Refunds</div>
+    <div class="card" data-topic="Payments">Payment Issues</div>
+    <div class="card" data-topic="Account">Account Settings</div>
+  </section>
+
+  <!-- Accordion -->
+  <section class="accordion">
+    <div class="accordion-item" id="Orders">
+      <div class="accordion-header">Orders</div>
+      <div class="accordion-content">
+        <p>Manage your orders efficiently:</p>
+        <ul>
+          <li>Track your order status</li>
+          <li>Cancel or modify an order</li>
+          <li>View delivery estimates</li>
+          <li>Request help for missing items</li>
+        </ul>
+      </div>
+    </div>
+    <div class="accordion-item" id="Returns">
+      <div class="accordion-header">Returns & Refunds</div>
+      <div class="accordion-content">
+        <p>Easy returns and refund guidance:</p>
+        <ul>
+          <li>Request a return online</li>
+          <li>Check refund status</li>
+          <li>Guidelines for damaged or wrong items</li>
+          <li>Contact support for exceptions</li>
+        </ul>
+      </div>
+    </div>
+    <div class="accordion-item" id="Payments">
+      <div class="accordion-header">Payment Issues</div>
+      <div class="accordion-content">
+        <p>Resolve payment problems quickly:</p>
+        <ul>
+          <li>Failed transaction troubleshooting</li>
+          <li>Refund processing times</li>
+          <li>Update payment method</li>
+          <li>Check payment history</li>
+        </ul>
+      </div>
+    </div>
+    <div class="accordion-item" id="Account">
+      <div class="accordion-header">Account Settings</div>
+      <div class="accordion-content">
+        <p>Manage your account preferences:</p>
+        <ul>
+          <li>Update personal information</li>
+          <li>Change password</li>
+          <li>Manage addresses</li>
+          <li>Set notification preferences</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section class="contact">
+    <h2>Contact Us</h2>
+    <button id="chatBtn">Chat Now</button>
+    <button onclick="window.location.href='tel:+911234567890'">Call Support</button>
+    <button onclick="window.location.href='mailto:support@myshop.com'">Email Support</button>
+  </section>
+
+  <!-- Chat Popup -->
+  <div class="chat-popup" id="chatPopup">
+    <div class="chat-header">Live Chat</div>
+    <div class="chat-body" id="chatBody">Hello! How can we help you today?</div>
+    <div class="chat-input">
+      <input type="text" id="chatInput" placeholder="Type a message...">
+      <button id="sendBtn">Send</button>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    &copy; 2026 ShooraMart. All rights reserved.
+  </footer>
+
+  <script>
+    // Accordion toggle
+    const headers = document.querySelectorAll('.accordion-header');
+    headers.forEach(header => {
+      header.addEventListener('click', () => {
+        header.classList.toggle('active');
+        const content = header.nextElementSibling;
+        content.style.display = content.style.display === 'block' ? 'none' : 'block';
+      });
+    });
+
+    // FAQ card click scroll + highlight
+    const cards = document.querySelectorAll('.faq-cards .card');
+    cards.forEach(card => {
+      card.addEventListener('click', () => {
+        cards.forEach(c => c.classList.remove('active'));
+        card.classList.add('active');
+        const topicId = card.dataset.topic;
+        const section = document.getElementById(topicId);
+        section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        section.querySelector('.accordion-header').classList.add('active');
+        section.querySelector('.accordion-content').style.display = 'block';
+      });
+    });
+
+    // Search filter
+    const searchInput = document.getElementById('faqSearch');
+    searchInput.addEventListener('input', () => {
+      const query = searchInput.value.toLowerCase();
+      cards.forEach(card => {
+        card.style.display = card.textContent.toLowerCase().includes(query) ? 'block' : 'none';
+      });
+    });
+
+    // Chat popup
+    const chatBtn = document.getElementById('chatBtn');
+    const chatPopup = document.getElementById('chatPopup');
+    const sendBtn = document.getElementById('sendBtn');
+    const chatInput = document.getElementById('chatInput');
+    const chatBody = document.getElementById('chatBody');
+
+    chatBtn.addEventListener('click', () => {
+      chatPopup.style.display = chatPopup.style.display === 'block' ? 'none' : 'block';
+    });
+
+    sendBtn.addEventListener('click', () => {
+      if (chatInput.value.trim() !== '') {
+        const userMsg = document.createElement('div');
+        userMsg.textContent = 'You: ' + chatInput.value;
+        userMsg.style.margin = '5px 0';
+        chatBody.appendChild(userMsg);
+        chatInput.value = '';
+        chatBody.scrollTop = chatBody.scrollHeight;
+      }
+    });
+
+    chatInput.addEventListener('keypress', (e) => {
+      if (e.key === 'Enter') sendBtn.click();
+    });
+  </script>
+</body>
+
+</html>

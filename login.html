@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Login Page of Cybershoora</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Segoe UI", sans-serif;
+      }
+
+      body {
+        min-height: 100vh;
+        background: radial-gradient(circle at top, #1b1f3b, #05060f 60%);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .box {
+        position: relative;
+        width: 100%;
+        max-width: 400px;
+        background: rgba(255, 255, 255, 0.08);
+        backdrop-filter: blur(14px);
+        -webkit-backdrop-filter: blur(14px);
+        padding: 30px;
+        border-radius: 16px;
+        color: white;
+        box-shadow: 0 25px 60px rgba(0, 0, 0, 0.6);
+      }
+
+      h2 {
+        text-align: center;
+        margin-bottom: 25px;
+        letter-spacing: 2px;
+      }
+
+      .group {
+        margin-bottom: 18px;
+      }
+
+      label {
+        font-size: 13px;
+        margin-bottom: 6px;
+        display: block;
+      }
+
+      input {
+        width: 100%;
+        padding: 12px;
+        border-radius: 8px;
+        border: none;
+        outline: none;
+        background: rgba(255, 255, 255, 0.1);
+        color: white;
+      }
+
+      input:focus {
+        box-shadow: 0 0 0 1px #7f5af0;
+      }
+
+      .password-box {
+        position: relative;
+      }
+
+      .show {
+        position: absolute;
+        right: 12px;
+        top: 50%;
+        transform: translateY(-50%);
+        font-size: 12px;
+        cursor: pointer;
+        color: #aaa;
+      }
+
+      .error {
+        font-size: 12px;
+        color: #ff6b6b;
+        margin-top: 5px;
+        display: none;
+      }
+
+      .forgot {
+        text-align: right;
+        margin-bottom: 15px;
+      }
+
+      .forgot a {
+        font-size: 13px;
+        color: #7f5af0;
+        text-decoration: none;
+      }
+
+      .login-btn {
+        width: 100%;
+        padding: 12px;
+        border: none;
+        border-radius: 10px;
+        background: linear-gradient(135deg, #7f5af0, #00e5ff);
+        font-weight: bold;
+        cursor: pointer;
+        position: relative;
+        z-index: 10;
+        pointer-events: auto;
+        touch-action: manipulation;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="box">
+      <h2>LOGIN</h2>
+
+      <form id="form">
+        <div class="group">
+          <label>Email</label>
+          <input type="text" id="email" placeholder="abc123@gmail.com" />
+          <div class="error" id="emailErr">
+            Email must be like abc123@gmail.com
+          </div>
+        </div>
+
+        <div class="group">
+          <label>Password</label>
+          <div class="password-box">
+            <input
+              type="password"
+              id="password"
+              placeholder="Enter password"
+            />
+            <span class="show" onclick="toggle()">SHOW</span>
+          </div>
+          <div class="error" id="passErr">
+            Password must be at least 5 characters
+          </div>
+        </div>
+
+        <div class="forgot">
+          <a href="signup.html">Forgot password?</a>
+        </div>
+
+        <button type="submit" class="login-btn">Login</button>
+      </form>
+    </div>
+
+    <script>
+      const form = document.getElementById("form");
+      const email = document.getElementById("email");
+      const password = document.getElementById("password");
+      const emailErr = document.getElementById("emailErr");
+      const passErr = document.getElementById("passErr");
+
+      function toggle() {
+        password.type =
+          password.type === "password" ? "text" : "password";
+      }
+
+      function validEmail(value) {
+        const regex =
+          /^(?=.*[a-zA-Z])(?=.*\d)[a-zA-Z0-9]+@gmail\.com$/;
+        return regex.test(value);
+      }
+
+      form.addEventListener("submit", function (e) {
+        e.preventDefault();
+
+        let ok = true;
+
+        if (!validEmail(email.value.trim())) {
+          emailErr.style.display = "block";
+          ok = false;
+        } else {
+          emailErr.style.display = "none";
+        }
+
+        if (password.value.length < 6) {
+          passErr.style.display = "block";
+          ok = false;
+        } else {
+          passErr.style.display = "none";
+        }
+
+        if (ok) {
+          alert("Login Successful ✅");
+          form.reset();
+        }
+      });
+    </script>
+  </body>
+</html>
